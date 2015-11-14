@@ -1,0 +1,9 @@
+<publishData>
+  <publishTarget publishUrl="E:\Web-Services-and-Cloud\Windows Communication Foundation (WCF)\StringCountServiceIIS\">
+    <file relUrl="StringCountService.PhraseCount.svc" publishTime="11/14/2015 15:36:41" />
+    <file relUrl="bin/StringCountService.dll" publishTime="11/14/2015 15:36:40" />
+    <file relUrl="bin/StringCountService.dll.config" publishTime="11/14/2015 15:03:15" />
+    <file relUrl="Web.config" publishTime="11/14/2015 15:03:15" />
+    <file relUrl="bin/StringCountService.pdb" publishTime="11/14/2015 15:36:40" />
+  </publishTarget>
+</publishData>

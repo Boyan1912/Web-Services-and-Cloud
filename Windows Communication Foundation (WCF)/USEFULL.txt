@@ -1,0 +1,57 @@
+For WCF Service Application ('Automatic' IIS Hosting):
+
+1. Create WCF Service Application
+2. Rename IService1 and Service1
+3. Delete - public class CompositeType
+4. Change: in .cvs file from the default ".Service1" name to yours.
+
+Example configure endpoint:
+<system.serviceModel>
+  <services>
+    <service name="WcfServiceTest.ServiceTest" behaviorConfiguration="WcfServiceTest.ServiceTestBehavior">
+      <endpoint address="" binding="wsHttpBinding" contract="WcfServiceTest.IServiceTest">  
+        <identity>
+          <dns value="localhost"></dns>
+        </identity>
+      </endpoint>
+      <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange"></endpoint>
+    </service>
+  </services>
+
+5. Add Console Client (Console project)
+6. Add Service reference for the console client to the service, and add the using
+7. Use the service by creating a new instance of the service
+
+
+For WCF Service Library (Console Hosting):
+
+As above to 3. inclusive
+4. Make new console project
+
+Example:
+	    Uri serviceAddress = new Uri("http://localhost:3000/phraseCount");
+
+            ServiceHost selfHost = new ServiceHost(typeof(PhraseCount), serviceAddress);
+
+            var smb = new ServiceMetadataBehavior();
+            smb.HttpGetEnabled = true;
+            selfHost.Description.Behaviors.Add(smb);
+
+            using (selfHost)
+            {
+                selfHost.Open();
+
+                Console.WriteLine("The service is started at endpoint " + serviceAddress);
+                Console.WriteLine("Press enter to exit.");
+                Console.ReadLine();
+            }
+
+5. Run as administrator in bin/debug
+6. Start wcftestclient from Developer Command Prompt - for testing
+'Add Service Reference' generates proxy - same as above
+//(7. Start svcutil from Developer Command Prompt for generating proxy classes)
+
+
+Async:
+Call the service method with async in the name.
+'method'.ContinueWith((result) => lambda...) 
